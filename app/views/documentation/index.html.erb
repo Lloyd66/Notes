@@ -1,0 +1,84 @@
+<div class="container">
+
+	<div class="page-header">
+		<h1>Application Notes</h1>
+		<p class="lead">Développement d'une application permettant d'enregistrer des notes sur Android.
+			<br/>
+			Rappel des fonctionnalités demandées pour la version offline :
+			<ul>
+				<li>Permettre à l'utilisateur de créer/modifier/supprimer des notes</li>
+				<li>Afficher les notes enregistrées</li>
+				<li>Trier les notes selon leur date de création / modification</li>
+				<li>Rechercher une note (barre de recherche)</li>
+				<li>Enregistrer les données via <a href="http://realm.io">Realm</a></li>
+			</ul>
+		</p>
+	</div>
+
+	<h3>Version connectée</h3>
+	<p>
+		Maintenant que nous avons une application offline fonctionnelle, nous allons ajouter une nouvelle fonctionnalité.<br/> L'application va maintenant pouvoir se synchroniser avec une API.<br/>
+	</p>
+
+	<h3>Fonctionnalités demandées</h3>
+	<p>
+		<ul>
+			<li>Gérer la création de compte, ainsi que la connexion d'un utilisateur</li>
+			<li>Chaque utilisateur doit avoir accès à ses propres notes et ne pas voir celles des autres utilisateurs.</li>
+			<li>Lorsqu'une note est créée, l'API doit être appelée afin de la créer aussi sur le serveur.</li>
+			<li>Lorsqu'une modification est apportée à une note, l'API doit être appelée afin de modifier aussi la note sur le serveur.</li>
+			<li>Enfin, lorsqu'une note est supprimée, elle doit aussi l'être sur le serveur.</li>
+			<li>Gestion des erreurs renvoyées par l'API.</li>
+		</ul>
+	</p>
+
+	<p>
+		<b>Bonus</b>: Gestion de la présence ou de l'absence de connexion. Si une note n'est pas synchronisée, l'indiquer dans l'application. Synchroniser la prochaine fois que l'application dispose d'une connexion.
+	</p>
+
+	<h3>Développement de l'API</h3>
+	<p>
+		Pour ceux qui le souhaient, vous pouvez créer votre propre API avec les outils que vous voulez.
+		<br/>
+		Vous pouvez aussi utiliser l'API développée par votre dévoué professeur :).
+	</p>
+
+	<h3>Documentation de l'API</h3>
+	<p>Toutes les api se trouvent ici : /api/v1/ </p>
+	<h4>User (endpoint : /api/v1/user) </h4>
+	<p>
+		<b>POST /</b> : Créer un compte. <br/>
+		Paramètre attendu => un objet "user" contenant 2 paramètres : "email" et "password".
+	</p>
+
+	<p>
+		<b>POST /connect</b> : Connexion. <br/>
+		Paramètre attendu => un objet "user" contenant 2 paramètres : "email" et "password".<br/>
+		Le serveur renvoie en réponse un token (value + expires_at), la valeur du token devra être envoyée en paramètre dans chaque appel à l'API Note.
+	</p>
+
+	<h4>Note (endpoint : /api/v1/note)</h4>
+	<p>Tous les appels à cet api sont authentifié via le token obtenu lors de la connexion, il faut donc l'enregistrer dans l'application. (Le paramètre a passé est "token")</p>
+	<p>
+		<b>GET /</b> : Liste des notes de l'utilisateur. <br/>
+	</p>
+
+	<p>
+		<b>GET /:id</b> : Obtenir une note selon l'id passé dans l'url. <br/>
+	</p>
+
+	<p>
+		<b>POST /</b> : Créer une nouvelle note. <br/>
+		Paramètre attendu => un objet "note" contenant 2 paramètres : "title" et "content".<br/>
+	</p>
+
+	<p>
+		<b>PUT /:id</b> : Modifier une note. <br/>
+		Paramètre attendu => un objet "note" contenant 2 paramètres : "title" et "content".<br/>
+	</p>
+
+	<p>
+		<b>DELETE /:id</b> : Supprimer une note. <br/>
+	</p>
+
+</div>
