@@ -3,25 +3,25 @@
 Remarque : Il est nécessaire d'installer mysql pour utiliser l'application, ou alors de changer la configuration de la bdd (config/database.yml) pour utiliser sqlite
 
 ==== Installation de RVM et Ruby
-```
-curl -sSL https://get.rvm.io | bash -s stable
-rvm install 2.1
-source ~/.rvm/scripts/rvm
-gem install bundler
-```
+
+  curl -sSL https://get.rvm.io | bash -s stable
+  rvm install 2.1
+  source ~/.rvm/scripts/rvm
+  gem install bundler
+
 
 ==== Installation de l'application (en mode développement)
-```
-git clone https://github.com/Lloyd66/Notes.git
-cd Notes
-bundle install
-bundle exec rake db:setup
-```
+
+  git clone https://github.com/Lloyd66/Notes.git
+  cd Notes
+  bundle install
+  bundle exec rake db:setup
+
 
 ==== Lancer l'application (en mode développement)
-```
-rails s 
-```
+
+  rails s 
+
 
 L'application est disponible en local à l'adresse http://127.0.0.1:3000
 
