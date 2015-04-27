@@ -10,7 +10,7 @@ class Api::V1::UserController < ApplicationController
 			userParams[:password] = Digest::MD5.hexdigest(userParams[:password])
 			user = User.new userParams
 			user.save
-			render json: { success: true}, :status => 204, callback: params[:callback]
+			render json: { success: true}, :status => 200, callback: params[:callback]
 		else
 			render json: { success: false, reason: "User already exists", errno: -1 }, callback: params[:callback]
 		end
